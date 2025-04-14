@@ -1,6 +1,7 @@
 package com.example.appvlsm;
 
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                String resultado;
+                SpannableStringBuilder resultado;
+
                 if (!maskStr.isEmpty()) {
                     try {
                         int cidr = Integer.parseInt(maskStr);
@@ -65,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                resultText.setText(resultado);
+                resultText.setText(resultado, TextView.BufferType.SPANNABLE);
+
             }
         });
     }

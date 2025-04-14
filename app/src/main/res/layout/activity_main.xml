@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+        xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical"
         android:padding="24dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" android:backgroundTint="#666464">
 
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="192dp" app:srcCompat="@drawable/green_modern_gaming_channel_banner"
+            android:id="@+id/imageView3" android:layout_marginBottom="25dp"/>
     <EditText
             android:id="@+id/networkInput"
             android:hint="Ingrese la red (ej: 192.168.1.0)"
             android:inputType="phone"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
-
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     <EditText
             android:id="@+id/hostsInput"
             android:hint="Ingrese número de hosts (opcional)"
             android:inputType="number"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"/>
 
     <EditText
             android:id="@+id/maskInput"
             android:hint="Ingrese la máscara (ej: 24) (opcional)"
             android:inputType="number"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"/>
 
     <Button
             android:id="@+id/calculateButton"
             android:text="Calcular VLSM"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" android:backgroundTint="#3D8FA8"/>
+            android:layout_marginTop="16dp" android:backgroundTint="#81C146" android:backgroundTintMode="add"/>
 
     <ScrollView
             android:layout_width="match_parent"
@@ -45,7 +48,7 @@
                 android:id="@+id/resultText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
     </ScrollView>
 
 </LinearLayout>

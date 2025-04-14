@@ -1,11 +1,17 @@
 package com.example.appvlsm;
 
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.graphics.Typeface.BOLD;
+
 public class VLSMCalculator {
 
-    public String calcularSoloConHosts(String red, int hostsRequeridos) {
+    public SpannableStringBuilder calcularSoloConHosts(String red, int hostsRequeridos) {
         int bits = 0;
         int totalHosts = 0;
         while (totalHosts < hostsRequeridos + 2) {
@@ -13,29 +19,33 @@ public class VLSMCalculator {
             totalHosts = (int) Math.pow(2, bits);
         }
         int cidr = 32 - bits;
-        return calcularSoloConMascara(red, cidr);
-    }
-
-    public String calcularSoloConMascara(String red, int cidr) {
         return calcularDetalles(red, cidr);
     }
 
-    public String calcularConMascaraYHosts(String red, int cidr, int hostsRequeridos) {
+    public SpannableStringBuilder calcularSoloConMascara(String red, int cidr) {
+        return calcularDetalles(red, cidr);
+    }
+
+    public SpannableStringBuilder calcularConMascaraYHosts(String red, int cidr, int hostsRequeridos) {
         int maxHosts = (int) Math.pow(2, 32 - cidr) - 2;
         if (hostsRequeridos > maxHosts) {
-            return "⚠️ La cantidad de hosts requerida (" + hostsRequeridos + ") no es posible con la máscara /" + cidr + ".\nMáximo permitido: " + maxHosts + " hosts.";
+            return makeBoldText("⚠️ La cantidad de hosts requerida (" + hostsRequeridos +
+                    ") no es posible con la máscara /" + cidr +
+                    ".\nMáximo permitido: " + maxHosts + " hosts.\n");
         }
         return calcularDetalles(red, cidr);
     }
 
-    public String calcularDetalles(String red, int cidr) {
+    public SpannableStringBuilder calcularDetalles(String red, int cidr) {
+        SpannableStringBuilder sb = new SpannableStringBuilder();
+
         if (cidr < 0 || cidr > 32) {
-            return "Máscara CIDR inválida.";
+            return makeBoldText("Máscara CIDR inválida.");
         }
 
         String[] partes = red.split("\\.");
         if (partes.length != 4) {
-            return "Formato de dirección de red inválido.";
+            return makeBoldText("Formato de dirección de red inválido.");
         }
 
         int ip = (Integer.parseInt(partes[0]) << 24) |
@@ -61,19 +71,32 @@ public class VLSMCalculator {
         String claseIP = obtenerClaseIP(partes[0]);
         String tipoIP = obtenerTipoIP(partes[0]);
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("Dirección de Red: ").append(redStr).append("\n");
-        sb.append("Rango de IPs Usables: ").append(primerIP).append(" - ").append(ultimaIP).append("\n");
-        sb.append("Dirección de Broadcast: ").append(broadcastStr).append("\n");
-        sb.append("Número Total de Hosts: ").append(totalHosts).append("\n");
-        sb.append("Número de Hosts Usables: ").append(hostsUsables).append("\n");
-        sb.append("Máscara de Subred: ").append(mascaraSubred).append("\n");
-        sb.append("Máscara Wildcard: ").append(wildcard).append("\n");
-        sb.append("Máscara Binaria: ").append(mascaraBinaria).append("\n");
-        sb.append("Clase de IP: ").append(claseIP).append("\n");
-        sb.append("Notación CIDR: /").append(cidr).append("\n");
-        sb.append("Tipo de IP: ").append(tipoIP).append("\n\n");
-        return sb.toString();
+        addLine(sb, "Dirección de Red: ", redStr);
+        addLine(sb, "Rango de IPs Usables: ", primerIP + " - " + ultimaIP);
+        addLine(sb, "Dirección de Broadcast: ", broadcastStr);
+        addLine(sb, "Número Total de Hosts: ", String.valueOf(totalHosts));
+        addLine(sb, "Número de Hosts Usables: ", String.valueOf(hostsUsables));
+        addLine(sb, "Máscara de Subred: ", mascaraSubred);
+        addLine(sb, "Máscara Wildcard: ", wildcard);
+        addLine(sb, "Máscara Binaria: ", mascaraBinaria);
+        addLine(sb, "Clase de IP: ", claseIP);
+        addLine(sb, "Notación CIDR: ", "/" + cidr);
+        addLine(sb, "Tipo de IP: ", tipoIP);
+
+        return sb;
+    }
+
+    private void addLine(SpannableStringBuilder sb, String label, String value) {
+        int start = sb.length();
+        sb.append(label);
+        sb.setSpan(new StyleSpan(BOLD), start, start + label.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sb.append(value).append("\n");
+    }
+
+    private SpannableStringBuilder makeBoldText(String text) {
+        SpannableStringBuilder sb = new SpannableStringBuilder(text);
+        sb.setSpan(new StyleSpan(BOLD), 0, text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return sb;
     }
 
     private String intAIP(int ip) {
@@ -118,5 +141,4 @@ public class VLSMCalculator {
         }
         return "Pública";
     }
-
 }
