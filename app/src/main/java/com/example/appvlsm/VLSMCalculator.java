@@ -61,8 +61,6 @@ public class VLSMCalculator {
         String claseIP = obtenerClaseIP(partes[0]);
         String tipoIP = obtenerTipoIP(partes[0]);
 
-//        List<String> subredes = generarSubredes(direccionRed, cidr);
-
         StringBuilder sb = new StringBuilder();
         sb.append("Dirección de Red: ").append(redStr).append("\n");
         sb.append("Rango de IPs Usables: ").append(primerIP).append(" - ").append(ultimaIP).append("\n");
@@ -75,12 +73,6 @@ public class VLSMCalculator {
         sb.append("Clase de IP: ").append(claseIP).append("\n");
         sb.append("Notación CIDR: /").append(cidr).append("\n");
         sb.append("Tipo de IP: ").append(tipoIP).append("\n\n");
-
-//        sb.append("Subredes disponibles:\n");
-//        for (String subred : subredes) {
-//            sb.append(subred).append("\n");
-//        }
-
         return sb.toString();
     }
 
@@ -127,16 +119,4 @@ public class VLSMCalculator {
         return "Pública";
     }
 
-//    private List<String> generarSubredes(int direccionRed, int cidr) {
-//        List<String> subredes = new ArrayList<>();
-//        int tamañoBloque = (int) Math.pow(2, 32 - cidr);
-//        int mascara = 0xffffffff << (32 - cidr);
-//        int inicio = direccionRed & mascara;
-//        int fin = (inicio | ~mascara) & 0xffffffff;
-//
-//        for (int actual = inicio; actual <= fin; actual += tamañoBloque) {
-//            subredes.add(intAIP(actual) + "/" + cidr);
-//        }
-//        return subredes;
-//    }
 }
