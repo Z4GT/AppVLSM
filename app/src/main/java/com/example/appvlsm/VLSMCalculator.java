@@ -44,9 +44,10 @@ public class VLSMCalculator {
         }
 
         String[] partes = red.split("\\.");
-        if (partes.length != 4) {
-            return makeBoldText("Formato de dirección de red inválido.");
+        if (!validarDireccionIP(partes)) {
+            return makeBoldText("Dirección IP inválida. Asegúrese de que cada octeto esté entre 0 y 255.");
         }
+
 
         int ip = (Integer.parseInt(partes[0]) << 24) |
                 (Integer.parseInt(partes[1]) << 16) |
@@ -105,6 +106,24 @@ public class VLSMCalculator {
                 ((ip >> 8) & 0xFF) + "." +
                 (ip & 0xFF);
     }
+
+    private boolean validarDireccionIP(String[] partes) {
+        if (partes.length != 4) {
+            return false;
+        }
+        for (String parte : partes) {
+            try {
+                int valor = Integer.parseInt(parte);
+                if (valor < 0 || valor > 255) {
+                    return false;
+                }
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     private String cidrAMascara(int cidr) {
         int mascara = 0xffffffff << (32 - cidr);
