@@ -2,6 +2,26 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.AppVLSM" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- For dark theme, surface and background colors are typically darker. -->
+        <!-- Material 3 DayNight theme should handle this well, but we ensure overrides -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorPrimaryContainer">@color/colorPrimaryContainer</item> <!-- Consider a darker variant if needed -->
+        <item name="colorOnPrimaryContainer">@color/colorOnPrimaryContainer</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <item name="colorSecondaryContainer">@color/colorSecondaryContainer</item> <!-- Consider a darker variant if needed -->
+        <item name="colorOnSecondaryContainer">@color/colorOnSecondaryContainer</item>
+        <item name="colorTertiary">@color/colorTertiary</item>
+        <item name="colorOnTertiary">@color/colorOnTertiary</item>
+        <!-- For dark themes, you often use darker backgrounds and surfaces -->
+        <!-- Let's define specific dark theme colors for background and surface if the defaults don't look good -->
+        <!-- For now, we'll use the same ones and rely on Material3 to adjust, but ideally, these would be darker shades of cyan or grey -->
+        <item name="android:colorBackground">@color/black</item> <!-- Example: using black for dark background -->
+        <item name="colorOnBackground">@color/colorOnBackground</item> <!-- Ensure this has good contrast on black -->
+        <item name="colorSurface">@color/black</item> <!-- Example: using black for dark surface -->
+        <item name="colorOnSurface">@color/colorOnSurface</item> <!-- Ensure this has good contrast on black -->
+        <item name="colorError">@color/colorError</item>
+        <item name="colorOnError">@color/colorOnError</item>
     </style>
 </resources>

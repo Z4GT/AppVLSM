@@ -4,7 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical"
         android:padding="24dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" android:backgroundTint="#666464">
+        android:layout_height="match_parent" android:background="?attr/colorSurface">
 
     <ImageView
             android:layout_width="match_parent"
@@ -37,7 +37,7 @@
             android:text="Calcular VLSM"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp" android:backgroundTint="#81C146" android:backgroundTintMode="add"/>
+            android:layout_marginTop="16dp" app:backgroundTint="?attr/colorPrimary" android:backgroundTintMode="add"/>
 
     <ScrollView
             android:layout_width="match_parent"

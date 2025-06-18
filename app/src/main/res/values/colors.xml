@@ -2,4 +2,22 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#00BCD4</color>
+    <color name="colorOnPrimary">#FFFFFFFF</color>
+    <color name="colorPrimaryContainer">#B2EBF2</color>
+    <color name="colorOnPrimaryContainer">#005662</color>
+    <color name="colorSecondary">#00ACC1</color>
+    <color name="colorOnSecondary">#FFFFFFFF</color>
+    <color name="colorSecondaryContainer">#A7EEF9</color>
+    <color name="colorOnSecondaryContainer">#004D58</color>
+    <color name="colorTertiary">#62EFF7</color>
+    <color name="colorOnTertiary">#00363A</color>
+    <color name="colorTertiaryContainer">#C2F5FA</color>
+    <color name="colorOnTertiaryContainer">#005056</color>
+    <color name="app_background">#E0F7FA</color> <!-- Specific for android:colorBackground -->
+    <color name="colorOnBackground">#001F24</color>
+    <color name="colorSurface">#F0FFFF</color>
+    <color name="colorOnSurface">#001F24</color>
+    <color name="colorError">#B00020</color> <!-- Keeping standard error color -->
+    <color name="colorOnError">#FFFFFFFF</color> <!-- Keeping standard onError color -->
 </resources>
